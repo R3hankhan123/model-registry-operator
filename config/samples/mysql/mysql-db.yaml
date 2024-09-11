@@ -89,7 +89,7 @@ items:
             - --datadir
             - /var/lib/mysql/datadir
             - --default-authentication-plugin=mysql_native_password
-          image: mysql:8.3.0
+          image: ubuntu/mysql:latest
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
@@ -113,8 +113,12 @@ items:
             initialDelaySeconds: 10
             timeoutSeconds: 5
           securityContext:
-            capabilities: {}
-            privileged: false
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            runAsNonRoot: true
+            seccompProfile:
+              type: "RuntimeDefault"
           terminationMessagePath: /dev/termination-log
           volumeMounts:
           - mountPath: /var/lib/mysql
