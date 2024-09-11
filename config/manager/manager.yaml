@@ -78,7 +78,7 @@ spec:
           - name: REST_IMAGE
             value: quay.io/r3hankhan/model-registry:latest
           - name: ENABLE_WEBHOOKS
-            value: "true"
+            value: "false"
           - name: CREATE_AUTH_RESOURCES
             value: "true"
           - name: DEFAULT_DOMAIN
